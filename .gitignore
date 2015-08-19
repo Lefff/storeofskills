@@ -1,1 +1,7 @@
 \#RAW
+node_modules
+bower
+app/css
+app/*.html
+dist
+.tmp

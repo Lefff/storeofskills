@@ -13,7 +13,7 @@ var as_gridView;
 			triggerDrop = tempBuffer.find('.form-cmp__dropdown-selected-val');
 			dropDown    = tempBuffer.find('.form-cmp__dropdown-list');
 
-			_events()
+			_events();
 		};
 
 		var _events = function() {
@@ -31,7 +31,8 @@ var as_gridView;
 
 		var _chooseView = function( e ) {
 			var $this    = $( this ),
-				linkText = $this.text();
+				linkText = $this.text(),
+				gridType = $this.data('grid-type');
 
 			e.preventDefault();
 
@@ -41,7 +42,7 @@ var as_gridView;
 				.siblings('.form-cmp__dropdown-item')
 				.removeClass('form-cmp__dropdown-item_active');
 
-			_changeGridView( $.trim( linkText ) );
+			_changeGridView( gridType );
 
 			triggerDrop
 						.trigger('click')
@@ -49,15 +50,15 @@ var as_gridView;
 		};
 
 		var _changeGridView = function( type ) {
-			var type = type || 'Линиями';
+			var type = type || 'lines';
 
 			switch( type.toLowerCase() ) {
-				case 'линиями':
+				case 'lines':
 				default:
 					gridWrapper.removeClass('products__grid_cols');
 					break;
 
-				case 'сеткой':
+				case 'cols':
 					gridWrapper.addClass('products__grid_cols');
 					break
 			}

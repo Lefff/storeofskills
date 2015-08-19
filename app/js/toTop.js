@@ -3,23 +3,25 @@ var as_toTop;
 ;(function( $ ) {
 
 	as_toTop = (function() {
-		var scrollParent,
+		var $document,
+			scrollParent,
 			topBtn,
 			offsetTrig,
 			footer;
 
 		var init = function() {
+			$document    = $(document);
 			scrollParent = $('html, body');
 			topBtn       = $('.push-top');
 			footerHeight = $('.footer').height() + 35;
-			offsetTrig   = window.innerHeight / 8;
+			offsetTrig   = $document.height() / 8;
 
 			_events()
 		};
 
 		var _events = function() {
 			topBtn.on( 'click', _goToTop );
-			$( document ).on('scroll', _fixUpTotop );
+			$( window ).on('scroll', _fixUpTotop );
 		};
 
 		var _goToTop = function( e ) {
@@ -31,9 +33,10 @@ var as_toTop;
 		};
 
 		var _fixUpTotop = function( e ) {
-			var fromBottom = scrollParent.first().innerHeight() - scrollParent.eq(1).scrollTop() - window.innerHeight;
+			var $this      = $( this ),
+				fromBottom = $document.height() - $this.scrollTop() - $this.height();
 
-			if( offsetTrig <= scrollParent.eq(1).scrollTop() ) {
+			if( offsetTrig <= $this.scrollTop() ) {
 				topBtn.removeClass('push-top_hidden');
 			} else {
 				topBtn.addClass('push-top_hidden');

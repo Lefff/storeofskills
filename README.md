@@ -11,7 +11,7 @@
 $ git clone https://github.com/Lefff/freshportfolio.git
   ```
 
-2. Перейдите в папку с проектом и установите все зависимости;
+2. Перейдите в папку с проектом и установите все зависимости.
 
   ```sh
   $ npm install && bower install
